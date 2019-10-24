@@ -1,0 +1,26 @@
+
+<button class="warn" on:click={onClick}>
+    {`${text} ${label}`}
+</button>
+
+<style type="text/scss">
+  @import "./../../styles/defaults";
+
+  button.warn {
+    background-color: $primary-colour2;
+    color: $darkest;
+  }
+</style>
+
+<script>
+  import { createEventDispatcher } from 'svelte';
+  import { label } from './ButtonData'
+  console.log('Label:', label);
+  export let text = '';
+
+  const dispatch = createEventDispatcher();
+
+  function onClick(event) {
+    dispatch('click', event)
+  }
+</script>
