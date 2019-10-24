@@ -1,0 +1,1 @@
+svelte-typescript-sass-template
