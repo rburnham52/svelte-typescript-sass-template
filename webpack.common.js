@@ -10,10 +10,12 @@ module.exports = {
 	},
 	resolve: {
 		alias: {
-			svelte: path.resolve('node_modules', 'svelte')
+			svelte: path.resolve('node_modules', 'svelte'),
+			'@styles': path.resolve(__dirname, 'src/styles/'),
 		},
-		extensions: ['.mjs', '.ts', '.tsx', '.js', '.svelte'],
-		mainFields: ['svelte', 'browser', 'module', 'main']
+		extensions: ['.mjs', '.ts', '.tsx', '.js', '.svelte', 'scss', 'css'],
+		mainFields: ['svelte', 'browser', 'module', 'main'],
+		modules: [path.resolve(__dirname, 'src'), 'node_modules']
 	},
 	output: {
 		path: path.resolve(__dirname, 'build'),

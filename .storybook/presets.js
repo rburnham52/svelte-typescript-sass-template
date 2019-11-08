@@ -1,1 +1,10 @@
-module.exports = ["@storybook/preset-typescript","@storybook/preset-scss"];
+module.exports = [
+    "@storybook/preset-typescript",
+    {
+        name: '@storybook/preset-scss',
+        options: {
+            cssLoaderOptions: {
+                sourceMap: true
+            }
+        }
+    }];

@@ -24,14 +24,15 @@ let config = merge.smart(common, {
                 }
             },
             {
-                test: /\.css$/,
+                test: /\.(scss|sass|css)$/,
                 use: [
                     /**
                      * MiniCssExtractPlugin doesn't support HMR.
                      * For developing, use 'style-loader' instead.
                      * */
                     MiniCssExtractPlugin.loader,
-                    'css-loader',
+                    { loader: 'css-loader', options: { sourceMap: true } },
+                    'sass-loader'
                 ]
             }
         ]

@@ -1,5 +1,6 @@
 const merge = require('webpack-merge');
 const {CheckerPlugin} = require('awesome-typescript-loader');
+const path = require('path');
 
 
 module.exports = ({config, mode}) => {
@@ -18,7 +19,8 @@ module.exports = ({config, mode}) => {
                 ]
             },
     });
+    mergedConfig.resolve.alias['@styles'] = path.resolve(__dirname, '../src/styles/');
     mergedConfig.plugins.push(new CheckerPlugin());
-    // console.dir(mergedConfig, {depth: null});
+    //console.dir(mergedConfig, {depth: null});
     return mergedConfig;
 };

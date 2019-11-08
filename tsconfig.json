@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
+    "extendedDiagnostics": true,
     "outDir": "build/lib",
-    "module": "commonjs",
-    "target": "es5",
+    "module": "es6",
+    "target": "es6",
     "lib": ["es5", "es6", "es7", "es2017", "dom"],
     "sourceMap": true,
     "allowJs": false,
@@ -10,6 +11,10 @@
     "moduleResolution": "node",
     "rootDirs": ["src", "stories"],
     "baseUrl": "src",
+    "paths": {
+      "@styles/*": ["styles/*"],
+      "@common/*": ["common/*"]
+    },
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
@@ -17,7 +22,7 @@
     "strict": true,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
-    "noUnusedLocals": true,
+    "noUnusedLocals": false,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
@@ -28,5 +33,5 @@
     "babelCore": "@babel/core"
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "build", "scripts"]
+  "exclude": ["node_modules", "build"]
 }
