@@ -1,6 +1,6 @@
+const {aliases, scssAliases} = require("../webpack.parts");
 const merge = require('webpack-merge');
 const {CheckerPlugin} = require('awesome-typescript-loader');
-const path = require('path');
 
 
 module.exports = ({config, mode}) => {
@@ -13,13 +13,19 @@ module.exports = ({config, mode}) => {
                         test: /\.(svelte|html)$/,
                         loader: 'svelte-loader',
                         options: {
-                            preprocess: require('svelte-preprocess')({ /* options */})
+                            preprocess: require('svelte-preprocess')({
+                                scss: {
+                                    importer: [
+                                        scssAliases(aliases),
+                                    ],
+                                }
+                            })
                         }
                     },
                 ]
             },
     });
-    mergedConfig.resolve.alias['@styles'] = path.resolve(__dirname, '../src/styles/');
+    mergedConfig.resolve.alias = {...mergedConfig.resolve.alias, ...aliases};
     mergedConfig.plugins.push(new CheckerPlugin());
     //console.dir(mergedConfig, {depth: null});
     return mergedConfig;

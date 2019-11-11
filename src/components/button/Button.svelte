@@ -4,7 +4,7 @@
 </button>
 
 <style type="text/scss">
-  @import "./../../styles/defaults";
+  @import "~@styles/defaults";
 
   button.warn {
     background-color: $primary-colour2;
@@ -12,9 +12,9 @@
   }
 </style>
 
-<script>
+<script lang="ts">
   import { createEventDispatcher } from 'svelte';
-  import { label } from './ButtonData'
+  import { label } from '@src/components/button/ButtonData'
   console.log('Label:', label);
   export let text = '';
 

@@ -35,11 +35,17 @@ npm run dev
 Navigate to [localhost:4000](http://localhost:4000). You should see your app running. Edit a component file in `src`, save it, and the page should reload with your changes.
 
 ### Limitations
-Typescript and Svelte support are added to `.svelte` files using the via the `svelte-preprocessor`. 
+#### Typescript/Sass
+Typescript and Sass support for `.svelte` files are added via the `svelte-preprocessor`. 
 It requires using the `lang` or `type` attributes on the `style` and `script` elements. 
-Within the script block this should work but inside the html section support varies based on the IDE you use. 
+Within the script block this should work but inside `.svelte` files support varies based on the IDE you use. It may build but your IDE still shows errors 
 
 Importing separate Typescript and Sass files should work fine. 
+
+#### Aliases
+Currently to use webpack style aliases during imports they need to be defined in `webpack.config', as a custom sass scssAliases to enable in sass and in tsconfig.json to enable importing in typescript
+
+I'm currently looking for a way to share this logic but for now you must update aliases in `webpack.common.js` as well as `packages.json`
 
 ## Storybook
 [Storybook](https://storybook.js.org/) has been setup to allow designing components in isolation. There are many Story book [addons](https://storybook.js.org/addons/) that can be added to extend the features
@@ -66,7 +72,9 @@ If you don't want storybook remove the following
 **NPM Packages**
 ```
     "@storybook/addon-actions": "^5.2.4",
+    "@storybook/addon-knobs": "^5.2.5",
     "@storybook/addon-links": "^5.2.4",
+    "@storybook/addon-viewport": "^5.2.5",
     "@storybook/addons": "^5.2.4",
     "@storybook/preset-scss": "^1.0.2",
     "@storybook/preset-typescript": "^1.1.0",

@@ -1,6 +1,6 @@
 import { action } from '@storybook/addon-actions';
 
-import Button2 from '../src/components/button/Button2.svelte';
+import Button2 from '@src/components/button/Button2.svelte';
 
 export default {
   title: 'Button2',

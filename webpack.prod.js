@@ -1,3 +1,4 @@
+const {aliases, scssAliases} = require("./webpack.parts");
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -19,7 +20,13 @@ let config = merge.smart(common, {
                     options: {
                         emitCss: true,
                         hotReload: false,
-                        preprocess: require('svelte-preprocess')({ /* options */})
+                        preprocess: require('svelte-preprocess')({
+                            scss: {
+                                importer: [
+                                    scssAliases(aliases),
+                                ],
+                            }
+                        })
                     }
                 }
             },
