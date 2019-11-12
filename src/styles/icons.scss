@@ -1,0 +1,16 @@
+// setup font awesome - must be before imports
+$fa-font-path: "~@fortawesome/fontawesome-pro/webfonts";
+
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/regular";
+@import "~@fortawesome/fontawesome-free/scss/brands";
+
+
+.icon {
+  &.ok:after {
+    @extend %fa-icon;
+    @extend .fas;
+    content: fa-content($fa-var-check);
+  }
+}

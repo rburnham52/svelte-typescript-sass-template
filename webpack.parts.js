@@ -15,7 +15,7 @@ const scssAliases = aliases => {
                 };
             }
         }
-        return url;
+        return null;
     };
 };
 
