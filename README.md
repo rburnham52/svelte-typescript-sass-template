@@ -10,7 +10,7 @@ It was modified to include
 To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
 
 ```bash
-npx degit sveltejs/template-webpack svelte-app
+npx degit nitro52/svelte-typescript-sass-template svelte-app
 cd svelte-app
 ```
 
