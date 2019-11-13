@@ -44,7 +44,11 @@ module.exports = {
                         })
                     }
                 }
-            }
+            },
+            {
+                test:  /\.(svg|ico|jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|cur|ani|pdf)(\?.*)?$/,
+                loader: 'file-loader',
+            },
             /*Style rules are customised in separate dev/prod configs*/
         ]
     },

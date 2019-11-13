@@ -6,20 +6,35 @@ const path = require('path');
 const onwarn = (warning, onwarn) => warning.code === 'css-unused-selector' || onwarn(warning);
 
 /**
- * Enables the use of aliases in sass.
+ * Custom Sass Importer to enable the use of aliases in sass.
+ * This will fall back to node_modules if the path starts with ~ and can not be matched to an alias
  */
 const scssAliases = aliases => {
     return url => {
-        // sass normally requires you to add a ~ character to the start of your aliases
-        // so we want to remove this before comparing the url to an alias
-        this.url = url.replace(/^~/, '');
-        for (const [alias, aliasPath] of Object.entries(aliases)) {
-            if (this.url.indexOf(alias) === 0) {
-                return {
-                    file: path.resolve(this.url.replace(alias, aliasPath)),
-                };
+        // console.log('attempting to resolve: '+  url);
+        // sass-loader normally requires you to add a ~ character to the start of your aliases
+        if (url.startsWith("~")) {
+            // we want to remove the ~ character before comparing the url to an alias
+            this.url = url.slice(1);
+            for (const [alias, aliasPath] of Object.entries(aliases)) {
+                if (this.url.indexOf(alias) === 0) {
+                    const filePath = path.resolve(this.url.replace(alias, aliasPath));
+                    // console.log('found alias: '+  alias + '; at ' + filePath);
+                    return {
+                        file: filePath,
+                    };
+                }
             }
+            //If there was nothing found fall back to node_modules
+            const filePath = path.resolve(process.cwd(), "node_modules", this.url);
+            // console.log('Attempting to resolve', filePath);
+            //if we can't find anything fall back to node_modules
+            return {
+                file: filePath
+            };
         }
+        // console.log('could not match: ' + url);
+        //if there is no match return null to allow other importers a chance to resolve.
         return null;
     };
 };
