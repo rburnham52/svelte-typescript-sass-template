@@ -1,4 +1,4 @@
-const {aliases, scssAliases} = require( "./webpack.parts");
+const {aliases, scssAliases, onwarn} = require( "./webpack.parts");
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const {CheckerPlugin} = require('awesome-typescript-loader');
@@ -34,6 +34,7 @@ module.exports = {
                     options: {
                         emitCss: true,
                         hotReload: true,
+                        onwarn: onwarn,
                         preprocess: require('svelte-preprocess')({
                             scss: {
                                 importer: [

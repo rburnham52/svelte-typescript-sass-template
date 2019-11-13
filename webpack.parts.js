@@ -1,6 +1,11 @@
 const path = require('path');
 
 /**
+ *  Disables some sass warnings that are not really warnings
+ */
+const onwarn = (warning, onwarn) => warning.code === 'css-unused-selector' || onwarn(warning);
+
+/**
  * Enables the use of aliases in sass.
  */
 const scssAliases = aliases => {
@@ -31,4 +36,4 @@ const aliases = {
 };
 
 
-module.exports = { scssAliases, aliases };
+module.exports = { scssAliases, aliases, onwarn };

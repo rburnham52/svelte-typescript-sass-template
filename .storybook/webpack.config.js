@@ -1,4 +1,4 @@
-const {aliases, scssAliases} = require("../webpack.parts");
+const {aliases, scssAliases, onwarn} = require("../webpack.parts");
 const merge = require('webpack-merge');
 const {CheckerPlugin} = require('awesome-typescript-loader');
 
@@ -13,6 +13,7 @@ module.exports = ({config, mode}) => {
                         test: /\.(svelte|html)$/,
                         loader: 'svelte-loader',
                         options: {
+                            onwarn: onwarn,
                             preprocess: require('svelte-preprocess')({
                                 scss: {
                                     importer: [
