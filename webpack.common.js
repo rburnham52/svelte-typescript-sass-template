@@ -5,6 +5,7 @@ const {CheckerPlugin} = require('awesome-typescript-loader');
 const CopyPlugin = require('copy-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const path = require('path');
+const magicImporter = require('node-sass-magic-importer');
 
 module.exports = {
     entry: {
@@ -39,6 +40,7 @@ module.exports = {
                             scss: {
                                 importer: [
                                     scssAliases(aliases),
+                                    //magicImporter()
                                 ],
                             }
                         })

@@ -2,6 +2,7 @@ const {aliases, scssAliases, onwarn} = require("./webpack.parts");
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const magicImporter = require('node-sass-magic-importer');
 
 /**
     merge.smart replaces matches
@@ -24,7 +25,8 @@ let config = merge.smart(common, {
                         preprocess: require('svelte-preprocess')({
                             scss: {
                                 importer: [
-                                    scssAliases(aliases),
+                                    // scssAliases(aliases),
+                                    magicImporter()
                                 ],
                             }
                         })
@@ -40,7 +42,14 @@ let config = merge.smart(common, {
                      * */
                     MiniCssExtractPlugin.loader,
                     { loader: 'css-loader', options: { sourceMap: true } },
-                    'sass-loader'
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            sassOptions: {
+                                importer: magicImporter()
+                            }
+                        }
+                    }
                 ]
             }
         ]
