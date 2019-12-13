@@ -25,8 +25,8 @@ let config = merge.smart(common, {
                         preprocess: require('svelte-preprocess')({
                             scss: {
                                 importer: [
-                                    // scssAliases(aliases),
-                                    magicImporter()
+                                    scssAliases(aliases),
+                                    // magicImporter()
                                 ],
                             }
                         })
